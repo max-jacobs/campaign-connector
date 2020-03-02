@@ -10,6 +10,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install
-      uses: npm install
+      run: npm install
     - name: Deploy master change to github page
       run: npm run deploy
