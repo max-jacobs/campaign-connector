@@ -1,4 +1,3 @@
-/*eslint-disable */
 exports.constituencies = {
     "Houghton & Sunderland South": "E14000754",
     "Newcastle upon Tyne Central": "E14000831",
