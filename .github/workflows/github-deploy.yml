@@ -9,5 +9,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Deploy master change to github page
-      run: npm run deploy
+    - name: Install
+      run: npm install
+    - name: Build
+      run: npm run build
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist
