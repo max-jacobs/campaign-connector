@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.9.5",
+    "@material-ui/icons": "^4.9.1",
     "@material/card": "^5.1.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",

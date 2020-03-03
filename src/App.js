@@ -45,7 +45,6 @@ class App extends Component {
       .then((response) => {
         this.setState({
           results: response.data,
-          // resultSelection: response.data.results[0].name
         });
       }, (error) => {
         this.setState({
@@ -70,9 +69,7 @@ class App extends Component {
             onChange={this.handleChange}
           />
         </div>
-        <div className="App-results">
-          <Results results={this.state.results} />
-        </div>
+        <Results props={this.state.results} />
       </div>
     )
   }

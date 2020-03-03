@@ -1,63 +1,53 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './app.css'
-import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-class Results extends Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-    this.state = {
-      results: props.results,
-      resultSelection: props.resultSelection,
-    };
-  }
+const useStyles = makeStyles(theme => ({
+  root: {
+    width: '100%',
+    marginTop: '2px'
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular,
+  },
+}));
 
-  static getDerivedStateFromProps(props, state) {
-    return {
-      results: props.results
-    }
-  }
-
-  handleClick = resultSelection => {
-    if (resultSelection != null) {
-      this.setState({
-        resultSelection: resultSelection
-      });
-    }
-  };
-
-  render() {
-    var onClick = this.handleClick;
-    let results
-    // let info
-    if (this.state.results != null) {
-      results = this.state.results.results.map(function (item, idx) {
-        return getResultCard(idx, item.name, item.similarity)
-      })
-      // info = <p> Showing info for {this.state.resultSelection}</p>;
-    }
-    return <div> {results} </div>
-  }
-}
-
-function getResultCard(idx, name, similarity) {
+function getResultCard(idx, name, similarity, classes) {
   return (
-    <div key={idx} className="mdc-card mdc-card--outlined">
-      <div className="App-result">
-        <div className="App-result-table">
-          <div className="App-result-column-1">
-            <p className="App-result-title">{name}</p>
-            <p className="App-result-score">Match: {similarity}%</p>
-          </div>
-          <div className="App-result-column-2">
-            <div className="App-result-button">
-              <Button className="Button">info</Button>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div className={classes.root} id={idx}>
+      <ExpansionPanel>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography className={classes.heading}>{name}, match: {similarity}%</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Typography>
+            Info about campaigns <br />
+            Contact links
+          </Typography>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
     </div>
   )
 }
 
-export default Results
+export default function Results(props) {
+  const classes = useStyles();
+  let results
+  if (props.props != null) {
+    results = props.props.results.map(function (item, idx) {
+      return getResultCard(idx, item.name, item.similarity, classes)
+    })
+  }
+  return <div className="App-results"> {results} </div>
+
+}
