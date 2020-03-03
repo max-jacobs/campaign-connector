@@ -58,7 +58,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1>Campaign <br /> Comparator</h1>
-          <h4>Select your constituency to see what's working for others around the country...</h4>
+          <h4>Find constituencies like yours to see what campaigns are working around the country...</h4>
         </header>
         <div className="App-select">
           <Select

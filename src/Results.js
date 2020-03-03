@@ -14,7 +14,12 @@ const useStyles = makeStyles(theme => ({
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular,
+    flexBasis: '80%',
+    flexShrink: 0,
+  },
+  secondaryHeading: {
+    fontSize: theme.typography.pxToRem(15),
+    color: theme.palette.text.secondary,
   },
 }));
 
@@ -27,7 +32,8 @@ function getResultCard(idx, name, similarity, classes) {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography className={classes.heading}>{name}, match: {similarity}%</Typography>
+          <Typography className={classes.heading}>{name}</Typography>
+          <Typography className={classes.secondaryHeading}>{similarity}%</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
