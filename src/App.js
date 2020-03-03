@@ -32,6 +32,12 @@ class App extends Component {
         dropDownSelection: select.value
       });
       this.getResults(select.value)
+    } else {
+      this.setState({
+        dropDownSelection: null,
+        results: null,
+        resultSelection: null,
+      });
     }
   };
 
