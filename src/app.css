@@ -1,3 +1,5 @@
+@import "https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.css";
+
 @media only screen and (max-width: 600px) {
   body {
       padding-left: 5%;
@@ -36,6 +38,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
+}
+
+.my-card-content {
+  padding: 16px;
 }
 
 #root {
@@ -111,8 +117,12 @@ h4 {
 }
 
 .App-result {
-  margin-top: 2%;
+  padding: 16px;
   text-align: left;
+}
+
+.mdc-card {
+  margin-top: 2%;
 }
 
 .App-result-title {
