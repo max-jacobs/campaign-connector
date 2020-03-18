@@ -1,17 +1,16 @@
 import React, { Component } from 'react'
 import Select from 'react-select'
-import constituenciesFile from './constituencies.js'
-import axios from 'axios';
+import anaylsis from './anaylsis.json'
 import './app.css'
-import Button from '@material-ui/core/Button';
 import Results from './Results.js';
 
 var options = []
-var idMap = {}
-Object.keys(constituenciesFile.constituencies).sort().forEach(key => {
-  options.push({ value: key, label: key })
-  idMap[key] = constituenciesFile.constituencies[key]
+var nameToId = {}
+Object.keys(anaylsis).sort().forEach(key => {
+  options.push({ value: anaylsis[key].name, label: anaylsis[key].name })
+  nameToId[anaylsis[key].name] = key
 });
+
 
 class App extends Component {
   constructor(props) {
@@ -38,19 +37,10 @@ class App extends Component {
     }
   };
 
-  getResults = constituency => {
-    axios.post(
-      'https://constituency-comparator.herokuapp.com/search', { "id": idMap[constituency] },
-    )
-      .then((response) => {
-        this.setState({
-          results: response.data,
-        });
-      }, (error) => {
-        this.setState({
-          results: null,
-        });
-      });
+  getResults = constituencyName => {
+    this.setState({
+      results: anaylsis[nameToId[constituencyName]],
+    });
   };
 
   render() {
@@ -58,6 +48,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1>Campaign <br /> Comparator</h1>
+          <p>Blurb</p>
           <h4>Find constituencies like yours to see what campaigns are working around the country...</h4>
         </header>
         <div className="App-select">
