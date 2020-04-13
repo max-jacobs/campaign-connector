@@ -47,9 +47,8 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1>Campaign <br /> Comparator</h1>
-          <p>Blurb</p>
-          <h4>Find constituencies like yours to see what campaigns are working around the country...</h4>
+          <h1>Campaign <br /> Connector</h1>
+          <h4>Connect with constituencies like yours to see what campaigns are working around the country...</h4>
         </header>
         <div className="App-select">
           <Select

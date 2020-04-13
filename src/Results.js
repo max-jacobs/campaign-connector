@@ -50,7 +50,13 @@ export default function Results(props) {
   const classes = useStyles();
   let results
   if (props.props != null) {
-    results = props.props.results.map(function (item, idx) {
+    let orderedProps = props.props.results.sort(function (a, b) {
+      if ( a.similarity > b.similarity ){
+        return -1
+      }
+      return 1
+    });
+    results = orderedProps.map(function (item, idx) {
       return getResultCard(idx, item.name, item.similarity, classes)
     })
   }
